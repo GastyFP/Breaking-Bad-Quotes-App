@@ -4,29 +4,22 @@ import Quote from "./components/Quote";
 import {getQuotes} from './actions/index'
 
 export default function App() {
-
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  
+  useEffect(()=>{ 
     dispatch(getQuotes())
-  },[])
+  },[]);
 
   const quote = useSelector(state=> state.quote)
-  console.log(quote);
-
+  
   return (
     <div className="app">
       <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Breaking_Bad_logo.svg" alt="logo"></img>
       <button onClick={()=>dispatch(getQuotes())}> Get Another</button>
-         <Quote />
+        {quote[0] ? 
+         <Quote quote={quote[0].quote} author={quote[0].author} />
+        :<span>cargando...</span>}
     </div>
   );
 }
-
-
-
-// fetch(`https://www.breakingbadapi.com/api/quote/random`)
-//     .then(response =>response.json())
-//     .then(json=>{
-//       console.log(json[0])
-//       setQuote({...quote ,text: json[0].quote, author: json[0].author})})

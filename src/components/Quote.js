@@ -1,12 +1,11 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
 
-const Quote = () => {
-  const quote = useSelector(state=>state.quote);
-  console.log('ACA TOY',quote[0].quote)
+
+const Quote = ({quote,author}) => { 
+  //console.log(quote ,author)              
   return (
-        <p> {quote[0].quote}<br/>
-        <span>-{quote[0].author}</span>
+        <p>{quote}<br/>
+        <span>-{author}</span>
         </p>
   )
 }
